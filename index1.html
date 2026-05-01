@@ -3,164 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Produtos</title>
+    <title>Street Sole - Loja de Sneakers</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
         }
         header {
-            background: #f8f8f8;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .banner {
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-        }
-        .logo-placeholder {
-            width: 120px;
-            height: 60px;
-            display: inline-block;
-            background: #ddd;
-            margin-right: 20px;
-            cursor: pointer;
-            border: 2px dashed #999;
-            text-align: center;
-            line-height: 60px;
-            font-size: 12px;
-            color: #666;
-        }
-        .banner h1 {
-            margin: 0;
-            color: #333;
+            padding: 2rem 1rem;
         }
         .products {
-            max-width: 1200px;
-            margin: 20px auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .product {
-            width: 300px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .card p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 1rem 0;
         }
         .sku {
-            display: block;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
             font-weight: bold;
-            color: #666;
-            margin-bottom: 10px;
-            font-size: 14px;
+            color: #495057;
         }
-        .carousel {
-            display: flex;
-            gap: 5px;
-            overflow-x: auto;
-            height: 200px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            margin-bottom: 10px;
+        .buy-btn {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
         }
-        .carousel img {
-            width: 90px;
-            height: 200px;
-            flex-shrink: 0;
-            object-fit: cover;
-            border-radius: 4px;
-            scroll-snap-align: start;
+        .buy-btn:hover {
+            background: #128C7E;
         }
-        .product h3 {
-            margin: 0 0 10px 0;
-        }
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        .whatsapp-float:hover {
-            background-color: #128c7e;
-            transform: scale(1.05);
-        }
-        footer {
-            background: #f0f0f0;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="banner">
-            <a class="logo-placeholder" href="#" title="Espaço para Logo da Empresa - Clique para editar link">LOGO</a>
-            <h1>Banner Superior da Loja</h1>
-        </div>
+        <h1>Street Sole</h1>
+        <p>A melhor loja de sneakers do pedaço! 🔥</p>
     </header>
-
-    <section class="products">
-        <div class="product">
-            <h3>Nome do Produto 1</h3>
-            <span class="sku">Código: PROD001</span>
-            <div class="carousel">
-                <img src="https://via.placeholder.com/300x200/ff6b6b/ffffff?text=1" alt="Imagem 1 do Produto 1">
-                <img src="https://via.placeholder.com/300x200/4ecdc4/ffffff?text=2" alt="Imagem 2 do Produto 1">
-                <img src="https://via.placeholder.com/300x200/45b7d1/ffffff?text=3" alt="Imagem 3 do Produto 1">
+    <div class="container">
+        <div class="products">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Nike Air Jordan 1">
+                <div class="card-content">
+                    <h3>Nike Air Jordan 1 High</h3>
+                    <p>Clássico atemporal com design premium.</p>
+                    <div class="price">R$ 1.299,90</div>
+                    <p class="sku">SKU: SNK001</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK001')">Comprar via WhatsApp</button>
+                </div>
             </div>
-            <p>Descrição do produto 1 mantida idêntica.</p>
-        </div>
-
-        <div class="product">
-            <h3>Nome do Produto 2</h3>
-            <span class="sku">Código: PROD002</span>
-            <div class="carousel">
-                <img src="https://via.placeholder.com/300x200/96ceb4/ffffff?text=1" alt="Imagem 1 do Produto 2">
-                <img src="https://via.placeholder.com/300x200/feca57/ffffff?text=2" alt="Imagem 2 do Produto 2">
-                <img src="https://via.placeholder.com/300x200/ff9ff3/ffffff?text=3" alt="Imagem 3 do Produto 2">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1606890658317-7d1181e63bef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Adidas Yeezy Boost">
+                <div class="card-content">
+                    <h3>Adidas Yeezy Boost 350</h3>
+                    <p>Conforto e estilo em uma só peça.</p>
+                    <div class="price">R$ 1.799,90</div>
+                    <p class="sku">SKU: SNK002</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK002')">Comprar via WhatsApp</button>
+                </div>
             </div>
-            <p>Descrição do produto 2 mantida idêntica.</p>
-        </div>
-
-        <div class="product">
-            <h3>Nome do Produto 3</h3>
-            <span class="sku">Código: PROD003</span>
-            <div class="carousel">
-                <img src="https://via.placeholder.com/300x200/54a0ff/ffffff?text=1" alt="Imagem 1 do Produto 3">
-                <img src="https://via.placeholder.com/300x200/5f27cd/ffffff?text=2" alt="Imagem 2 do Produto 3">
-                <img src="https://via.placeholder.com/300x200/00d2d3/ffffff?text=3" alt="Imagem 3 do Produto 3">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="New Balance 550">
+                <div class="card-content">
+                    <h3>New Balance 550</h3>
+                    <p>Retro vibe com tecnologia moderna.</p>
+                    <div class="price">R$ 899,90</div>
+                    <p class="sku">SKU: SNK003</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK003')">Comprar via WhatsApp</button>
+                </div>
             </div>
-            <p>Descrição do produto 3 mantida idêntica.</p>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Puma RS-X">
+                <div class="card-content">
+                    <h3>Puma RS-X</h3>
+                    <p>Bold e futurista para o dia a dia.</p>
+                    <div class="price">R$ 749,90</div>
+                    <p class="sku">SKU: SNK004</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK004')">Comprar via WhatsApp</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1543163528-9be3147e7a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Vans Old Skool">
+                <div class="card-content">
+                    <h3>Vans Old Skool</h3>
+                    <p>Ícone do skate, eterno clássico.</p>
+                    <div class="price">R$ 399,90</div>
+                    <p class="sku">SKU: SNK005</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK005')">Comprar via WhatsApp</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599388089548-86ee0d98d983?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Converse Chuck 70">
+                <div class="card-content">
+                    <h3>Converse Chuck 70</h3>
+                    <p>Canvas premium para qualquer ocasião.</p>
+                    <div class="price">R$ 449,90</div>
+                    <p class="sku">SKU: SNK006</p>
+                    <button class="buy-btn" onclick="openWhatsApp('SNK006')">Comprar via WhatsApp</button>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <a href="https://wa.me/351925659411?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        💬
-    </a>
-
-    <footer>
-        <p>Rodapé da loja.</p>
-    </footer>
+    </div>
+    <script>
+        function openWhatsApp(sku) {
+            const message = `Olá, poderia me enviar mais fotos e informações sobre esse item (${sku})`;
+            const whatsappNumber = '351925659411';
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
